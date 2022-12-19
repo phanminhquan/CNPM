@@ -1,0 +1,70 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+<h1 class="text-center" style="margin-bottom: 50px;padding-top: 100px; color: #EEEEEE">Bảng Điểm</h1>
+<div class="container mt-3" style="margin-bottom: 400px;">
+    <table class="table table-bordered">
+        <thead>
+        <tr style="text-align: center;color: #eee; font-size:25px">
+            <th>Tên học sinh</th>
+            <th>miệng</th>
+            <th>15p</th>
+            <th>45p</th>
+            <th>giữa kì</th>
+            <th>cuối kì</th>
+        </tr>
+        </thead>
+        <body>
+        <tr style="color:#DDDDDD; font-size:20px">
+
+            <td class="text-center" >{{current_user.name}}</td>
+            <td style="text-align: center ">
+                {% for bdhs in bangdiemhocsinh %}
+                {%for b  in bangdiem  %}
+                {% if bdhs.idDiem == b.maDiemSo and b.loaiDiem==1%}
+                <span style="padding: 5px">{{bdhs.giaTri}}</span>
+                {% endif %}
+                {% endfor %}
+                {% endfor %}
+            </td>
+            <td style="text-align: center">
+                {% for bdhs in bangdiemhocsinh %}
+                {%for b  in bangdiem  %}
+                {% if bdhs.idDiem == b.maDiemSo and b.loaiDiem==2%}
+                <span style="padding: 5px">{{bdhs.giaTri}}</span>
+                {% endif %}
+                {% endfor %}
+                {% endfor %}
+            </td>
+            <td style="text-align: center">
+                {% for bdhs in bangdiemhocsinh %}
+                {%for b  in bangdiem  %}
+                {% if bdhs.idDiem == b.maDiemSo and b.loaiDiem==3%}
+                <span style="padding: 5px">{{bdhs.giaTri}}</span>
+                {% endif %}
+                {% endfor %}
+                {% endfor %}
+            </td>
+            <td style="text-align: center">
+                {% for bdhs in bangdiemhocsinh %}
+                {%for b  in bangdiem  %}
+                {% if bdhs.idDiem == b.maDiemSo and b.loaiDiem==4%}
+                <span style="padding: 5px">{{bdhs.giaTri}}</span>
+                {% endif %}
+                {% endfor %}
+                {% endfor %}
+            </td>
+            <td style="text-align: center">
+                {% for bdhs in bangdiemhocsinh %}
+                {%for b  in bangdiem  %}
+                {% if bdhs.idDiem == b.maDiemSo and b.loaiDiem==5%}
+                <span style="padding: 5px">{{bdhs.giaTri}}</span>
+                {% endif %}
+                {% endfor %}
+                {% endfor %}
+            </td>
+        </tr>
+        </body>
+    </table>
+</div>
+{% endblock %}

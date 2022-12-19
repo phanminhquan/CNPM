@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML5 Login Form with validation Example</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="/static/login.css">
+
+</head>
+<body >
+<div id="bg"></div>
+<!-- partial:index.partial.html -->
+<div id="login-form-wrap" >
+    <h2>Đăng Nhập</h2>
+    {% if err_msg %}
+    <div class="alert alert-danger">{{err_msg}}</div>
+    {% endif %}
+    <form id="login-form" method="post" action="/my/{{id_hk}}/login">
+        <p>
+            <input type="text" id="username" name="username" placeholder="Nhập tên đăng nhập"><span></span><span></span>
+        </p>
+        <p>
+            <input type="password" id="password" placeholder="Nhập mật khẩu" name="password"><span></span><span></span>
+        </p>
+        <p>
+            <input type="submit" id="login" value="Đăng Nhập">
+        </p>
+    </form>
+    <div id="create-account-wrap">
+    <p><p>
+    </div><!--create-account-wrap-->
+
+</div><!--login-form-wrap-->
+<!-- partial -->
+</body>
+</html>
+
+

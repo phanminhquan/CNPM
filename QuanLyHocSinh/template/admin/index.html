@@ -1,0 +1,114 @@
+{% extends 'admin/base.html' %}
+
+{% block body %}
+{% if current_user.is_authenticated and session.role == "UserRole.ADMIN" %}
+<h1 class="text-center " style="margin-top: 25px;margin-bottom: 25px">THÔNG KÊ VÀ BÁO CÁO</h1>
+
+<div class="row">
+    <div class="col-md-5 col-sm-12">
+        <form>
+            <div class="form-group">
+                <label>Chọn học kì</label>
+                <select name="hocki" class="form-control">
+                    {% for h in hocki %}
+                    <option value="{{h.maHK}}">{{ h.tenHK}}</option>
+                    {% endfor %}
+                </select>
+                <label style="padding-top:10px">Chọn lớp</label>
+                <select name="lop" class="form-control">
+                    {% for h in lop %}
+                    <option value="{{h.maLop}}">{{ h.tenLop}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div>
+                <input type="submit" value="Lọc dữ liệu" id="click" class="btn btn-info"/>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-7 col-sm-12">
+        <canvas id="revenueStats"></canvas>
+    </div>
+    <div class="col-md-5 col-sm-12">
+        <table class="table">
+            <tr>
+                <th>Lớp</th>
+                <th>Sỉ số</th>
+                <th>Số lượng đạt</th>
+                <th>Tỉ lệ</th>
+            </tr>
+            {% for s in stats %}
+            <tr>
+                <td>{{ s[0] }}</td>
+                <td>{{ s[1] }}</td>
+                <td>{{ s[2] }}</td>
+                <td>{{ s[3] }}</td>
+
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{{ url_for('static', filename='chart.js') }}"></script>
+<script>
+    let labels = []
+    let data = []
+    {% for s in stats %}
+    labels.push('{{ s[0] }}')
+    data.push({{ s[3] }})
+    {% endfor %}
+
+    c = document.getElementById("click")
+
+
+<!--    function draw(){-->
+<!--        drawRevenueChart(labels, data)-->
+<!--    }-->
+    window.onload = function draw(){
+        drawRevenueChart(labels, data)
+    }
+
+
+</script>
+
+{% else %}
+<form id="login-form" method="post" action="{{url_for('admin_login')}}">
+<section class="vh-100" style="background-color: #508bfc;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card shadow-2-strong" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
+
+            <h3 class="mb-5">ĐĂNG NHẬP</h3>
+
+            <div class="form-outline mb-4">
+              <input type="input" id="username" name="username" class="form-control form-control-lg" placeholder="Nhập tên đăng nhập" />
+            </div>
+
+            <div class="form-outline mb-4">
+              <input type="password" id="password" name = "password" class="form-control form-control-lg" placeholder="Nhập mật khẩu" />
+            </div>
+
+            <!-- Checkbox -->
+            <div class="form-check d-flex justify-content-start mb-4">
+              <input class="form-check-input" type="checkbox" value="" id="form1Example3" />
+              <label class="form-check-label" for="form1Example3"> Remember password </label>
+            </div>
+
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Đăng nhập</button>
+
+            <hr class="my-4">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</form>
+
+{% endif %}
+{% endblock %}
+

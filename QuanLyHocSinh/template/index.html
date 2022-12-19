@@ -1,0 +1,21 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+{% if mon_hoc %}
+<div class="row" style="padding:30px">
+    {% for p in mon_hoc %}
+    <div class="col-md-3 col-sm-12" style="padding-top:50px" >
+        <div class="card">
+            <img class="card-img-top" src="https://www.google.com.vn/url?sa=i&url=https%3A%2F%2Fvi.pngtree.com%2Ffreepng%2Fdesktop-pc-electronic-product-internet-age-mouse-and-keyboard_3951769.html&psig=AOvVaw0zoa3zCo766bjy6XrEk1vc&ust=1669732476244000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCLiroqyM0fsCFQAAAAAdAAAAABAD" alt="{{ p.name }}">
+            <div class="card-body" style="text-align: center; background: #CCFFFF">
+                <h4 class="card-title">{{ p.tenMH }}</h4>
+                <a href="/diem/{{id_hk}}/{{p.IDMonHoc}}" class="btn btn-primary">Xem điểm</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p class="text-danger">Không có môn học nào!</p>
+{% endif %}
+{% endblock %}

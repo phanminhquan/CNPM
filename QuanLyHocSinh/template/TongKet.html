@@ -1,0 +1,44 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+<h1 class="text-center" style="padding-top:70px ;color: #eee ">BẢNG ĐIỂM HỌC KÌ {{id_hk}}</h1>
+<h4 style="padding-left: 120px ;color: #eee">Học sinh: {{current_user.name}}</h4>
+<div class="container mt-3">
+    <table class="table table-bordered" style="border-color: #CCCCCC" >
+        <thead>
+        <tr style="text-align: center ;color: #eee">
+            <th><h4>Môn học</h4></th>
+            <th><h4>Điểm trung bình</h4></th>
+        </tr>
+        </thead>
+        <body>
+        {% for mh in load_mh %}
+        <tr>
+            <td>
+                <h5  class="text-center" style="color: #222222, ">{{mh.tenMH}}</h5>
+            </td>
+            <td>
+                <h5 class ="text-center" style="color: #222222">{{diemtbcacmon[mh.IDMonHoc-1]}}</h5>
+            </td>
+        </tr>
+        {%endfor%}
+        <tr>
+            <td>
+                <h3><p class="text-center text-danger">Điểm tổng kết</p></h3>
+            </td>
+            <td>
+                <h3><p class="text-center text-danger">{{dtbtc}}</p></h3>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h3><p class="text-center text-danger">Xếp loại</p></h3>
+            </td>
+            <td>
+                <h3><p class="text-center text-danger">{{xep_loai}}</p></h3>
+            </td>
+        </tr>
+        </body>
+    </table>
+</div>
+{% endblock %}
